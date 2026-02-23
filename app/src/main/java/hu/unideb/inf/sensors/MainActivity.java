@@ -1,6 +1,9 @@
 package hu.unideb.inf.sensors;
 
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +11,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.security.Provider;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    SensorManager sensorManager;
+    TextView sensorsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +29,13 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        sensorsTextView = findViewById(R.id.sensorsTextView);
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        List<Sensor> sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL);
+
+        sensorsTextView.setText(sensorList.toString());
+
     }
 }
