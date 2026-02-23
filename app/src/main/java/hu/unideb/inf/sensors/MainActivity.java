@@ -3,6 +3,7 @@ package hu.unideb.inf.sensors;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         sensorsTextView = findViewById(R.id.sensorsTextView);
+        //sensorsTextView.setMovementMethod(new ScrollingMovementMethod());
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         List<Sensor> sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL);
